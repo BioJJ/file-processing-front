@@ -6,19 +6,18 @@ import { AppComponent } from './app.component';
 
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
-import { CandidatesModule } from './candidates/candidates.module';
+import { FilesModule } from './file/files.module';
 import { UserModule } from './user/user.module';
-import { CandidatesService } from './candidates.service';
+import { FilesService } from './file.service';
 import { UserService } from './user.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { LayoutComponent } from './layout/layout.component';
 import { TokenInterceptor } from './token.interceptor';
 import { DashboardService } from './dashboard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -28,7 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     AppRoutingModule,
     TemplateModule,
-    CandidatesModule,
+    FilesModule,
     UserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -37,7 +36,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
   ],
   providers: [
-    CandidatesService,
+    FilesService,
     AuthService,
     DashboardService,
     UserService,

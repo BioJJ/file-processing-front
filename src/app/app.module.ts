@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
 import { CandidatesModule } from './candidates/candidates.module';
+import { UserModule } from './user/user.module';
 import { CandidatesService } from './candidates.service';
+import { UserService } from './user.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +29,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     TemplateModule,
     CandidatesModule,
+    UserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
@@ -37,6 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CandidatesService,
     AuthService,
     DashboardService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

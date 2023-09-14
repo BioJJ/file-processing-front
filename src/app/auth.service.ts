@@ -12,7 +12,7 @@ import { User } from './login/user';
   providedIn: 'root',
 })
 export class AuthService {
-  apiURL: string = environment.apiURLBase + '/api/users';
+  apiURL: string = environment.apiURLBase + '/api/users/registry';
   tokenURL: string = environment.apiURLBase + environment.obterTokenUrl;
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;

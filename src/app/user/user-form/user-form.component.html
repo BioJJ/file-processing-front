@@ -1,0 +1,97 @@
+<h1 class="mt-4">User</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">
+    {{ user.id ? "Edição" : "Cadastro" }}
+  </li>
+</ol>
+
+<div class="container">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          User salvo/atualizado com sucesso!
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngFor="let erro of errors"
+        >
+          {{ erro }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="user.id">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>ID:</label>
+          <input
+            type="text"
+            [ngModel]="user.id"
+            name="id"
+            class="form-control"
+            disabled="true"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="user.name"
+            name="nome"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>UserName: *</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="user.username"
+            name="cpf"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Senha:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="rg"
+            [ngModel]="user.password"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success" *ngIf="!user.id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="user.id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger ml-1"
+          (click)="voltarParaListagem()"
+        >
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

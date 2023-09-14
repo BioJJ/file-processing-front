@@ -12,6 +12,7 @@ export class LoginComponent {
 
   username: string = '';
   password: string = '';
+  name: string = '';
   cadastrando?: boolean;
   mensagemSucesso?: string | null;
   errors?: String[];
@@ -46,6 +47,7 @@ export class LoginComponent {
     const usuario: User = new User();
     usuario.username = this.username;
     usuario.password = this.password;
+    usuario.name = this.name;
     this.authService.salvar(usuario).subscribe(
       (response) => {
         this.mensagemSucesso =

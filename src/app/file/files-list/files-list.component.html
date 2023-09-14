@@ -1,0 +1,104 @@
+<h1 class="mt-4">Files</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="messageSuccess">
+        {{ messageSuccess }}
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="messageError">
+        {{ messageError }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-warning" (click)="registry()">
+        <i class="fa fa-plus"></i> Upload
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-hover">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let file of files
+                | paginate : { itemsPerPage: 5, currentPage: page };
+              let i = index
+            "
+          >
+            <td>{{ file.id }}</td>
+            <td>{{ file.nome }}</td>
+            <td>{{ file.status }}</td>
+            <td>
+              <button
+                class="btn btn-primary"
+                routerLink="/files/form/{{ file.id }}"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button
+                class="btn btn-danger"
+                style="margin-left: 5px"
+                (click)="prepareDelete(file)"
+                data-toggle="modal"
+                data-target="#modalDelecao"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-right">
+        <pagination-controls
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Próximo"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+
+        <div class="modal-body" *ngIf="fileSelected">
+          Confirma a deleção do(a) file {{ fileSelected.name }}?
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="DeleteFile()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

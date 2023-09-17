@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export class PaginaUser {
+export class PageUser {
     content?: User[];
     totalElements?: number;
     size?: number;

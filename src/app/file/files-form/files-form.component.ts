@@ -14,6 +14,7 @@ export class FilesFormComponent implements OnInit {
   success: boolean = false;
   errors: string[] | null = null;
   id: number | null = null;
+  fileContent: string | ArrayBuffer | null = '';
 
   constructor(
     private service: FilesService,
@@ -59,6 +60,22 @@ export class FilesFormComponent implements OnInit {
           this.errors = errorResponse.error.errors;
         }
       );
+    }
+  }
+
+  onFileSelect(event: any) {
+    const file = event.target.files[0]; 
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        
+        this.fileContent = e.target.result;
+        console.log(this.fileContent); // Exibe o conteúdo do arquivo no console
+      };
+
+      reader.readAsText(file); // Lê o arquivo como texto
     }
   }
 

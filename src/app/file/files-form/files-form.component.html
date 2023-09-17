@@ -45,7 +45,7 @@
             type="text"
             class="form-control"
             [(ngModel)]="file.name"
-            name="nome"
+            name="name"
           />
         </div>
       </div>
@@ -56,14 +56,30 @@
             type="text"
             class="form-control"
             [(ngModel)]="file.status"
-            name="cpf"
+            name="status"
           />
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Arquivo XML:</label>
+          <input
+            type="file"
+            accept=".xml"
+            class="form-control-file"
+            [(ngModel)]="file.fileContent"
+            name="fileContent"
+            (change)="onFileSelect($event)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
         <button type="submit" class="btn btn-success" *ngIf="!file.id">
           <i class="fa fa-save"></i> Salvar
         </button>

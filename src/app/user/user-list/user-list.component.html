@@ -5,19 +5,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
-        {{ mensagemSucesso }}
+      <div class="alert alert-success" role="alert" *ngIf="messageSuccess">
+        {{ messageSuccess }}
       </div>
 
-      <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
-        {{ mensagemErro }}
+      <div class="alert alert-danger" role="alert" *ngIf="messageError">
+        {{ messageError }}
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-2">
-      <button class="btn btn-warning" (click)="novoCadastro()">
+      <button class="btn btn-warning" (click)="registry()">
         <i class="fa fa-plus"></i> Novo
       </button>
     </div>
@@ -40,7 +40,7 @@
           <tr
             *ngFor="
               let user of users
-                | paginate : { itemsPerPage: 5 , currentPage: pagina };
+                | paginate : { itemsPerPage: 5 , currentPage: page };
               let i = index
             "
           >
@@ -58,7 +58,7 @@
               <button
                 class="btn btn-danger"
                 style="margin-left: 5px"
-                (click)="preparaDelecao(user)"
+                (click)="prepareDelete(user)"
                 data-toggle="modal"
                 data-target="#modalDelecao"
               >
@@ -70,7 +70,7 @@
       </table>
       <div class="text-right">
         <pagination-controls
-          (pageChange)="pagina = $event"
+          (pageChange)="page = $event"
           previousLabel="Anterior"
           nextLabel="Próximo"
         ></pagination-controls>
@@ -85,8 +85,8 @@
           <h4>Confirmação</h4>
         </div>
 
-        <div class="modal-body" *ngIf="userSelecionado">
-          Confirma a deleção do(a) user {{ userSelecionado.name }}?
+        <div class="modal-body" *ngIf="userSelected">
+          Confirma a deleção do(a) user {{ userSelected.name }}?
         </div>
 
         <div class="modal-footer">

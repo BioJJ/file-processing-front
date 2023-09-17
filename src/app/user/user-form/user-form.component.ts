@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
 
   onSubmit() {
     if (this.id) {
-      this.service.atualizar(this.user).subscribe(
+      this.service.update(this.user).subscribe(
         (response) => {
           this.success = true;
           this.errors = null;
@@ -48,7 +48,7 @@ export class UserFormComponent implements OnInit {
         }
       );
     } else {
-      this.service.salvar(this.user).subscribe(
+      this.service.save(this.user).subscribe(
         (response) => {
           this.success = true;
           this.errors = null;
@@ -62,7 +62,7 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  voltarParaListagem() {
+  BackToList() {
     this.router.navigate(['/user/list']);
   }
 }

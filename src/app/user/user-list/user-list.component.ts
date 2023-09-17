@@ -11,51 +11,51 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
   users?: User[] | any = [];
-  userSelecionado!: User;
-  mensagemSucesso: string = '';
-  mensagemErro: string = '';
+  userSelected!: User;
+  messageSuccess: string = '';
+  messageError: string = '';
 
-  totalElementos? = 0;
-  pagina? = 0;
-  tamanho = 10;
+  totalElements? = 0;
+  page? = 0;
+  size = 10;
   pageSizeOptions: number[] = [10];
 
-  colunas = ['id', 'username', 'nome', 'email'];
+  colum = ['id', 'username', 'name', 'email'];
 
   constructor(private service: UserService, private router: Router) {}
 
   ngOnInit(): void {
-    this.listarUsers(this.pagina, this.tamanho);
+    this.listUsers(this.page, this.size);
   }
 
-  listarUsers(pagina = 0, tamanho = 5) {
-    this.service.list(pagina, tamanho).subscribe((response) => {
+  listUsers(page = 0, size = 5) {
+    this.service.list(page, size).subscribe((response) => {
       this.users = response.content;
-      this.totalElementos = response.totalElements;
-      this.pagina = response.number;
+      this.totalElements = response.totalElements;
+      this.page = response.number;
     });
   }
 
-  paginar(event: PageEvent) {
-    this.pagina = event.pageIndex;
-    this.listarUsers(this.pagina, this.tamanho);
+  pager(event: PageEvent) {
+    this.page = event.pageIndex;
+    this.listUsers(this.page, this.size);
   }
 
-  novoCadastro() {
+  registry() {
     this.router.navigate(['/user/form']);
   }
 
-  preparaDelecao(candidate: User) {
-    this.userSelecionado = candidate;
+  prepareDelete(candidate: User) {
+    this.userSelected = candidate;
   }
 
   deletarUser() {
-    this.service.deletar(this.userSelecionado).subscribe(
+    this.service.delete(this.userSelected).subscribe(
       (response) => {
-        this.mensagemSucesso = 'User deletado com sucesso!';
+        this.messageSuccess = 'User deletado com sucesso!';
         this.ngOnInit();
       },
-      (erro) => (this.mensagemErro = 'Ocorreu um erro ao deletar o User.')
+      (erro) => (this.messageError = 'Ocorreu um erro ao deletar o User.')
     );
   }
 }
